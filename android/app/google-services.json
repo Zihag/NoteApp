@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1092168608128",
+    "project_id": "nghianote-flutter-project",
+    "storage_bucket": "nghianote-flutter-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092168608128:android:a0a6268e6493caff26f965",
+        "android_client_info": {
+          "package_name": "se.pixolity.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXw_GPq1lPNTPHFYTVUoC9TuX_2nU9Gaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
