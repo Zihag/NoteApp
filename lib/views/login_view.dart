@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'dart:developer' as devtools show log;
 import 'package:flutter/material.dart';
+import 'package:mynotes/constants/routes.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -30,7 +31,9 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login'),),
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
       body: Column(
         children: [
           TextField(
@@ -38,7 +41,8 @@ class _LoginViewState extends State<LoginView> {
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: 'Enter your email here'),
+            decoration:
+                const InputDecoration(hintText: 'Enter your email here'),
           ),
           TextField(
             controller: _password,
@@ -53,12 +57,15 @@ class _LoginViewState extends State<LoginView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                final userCredential = await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(email: email, password: password);
-                print(userCredential);
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password,
+                );
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(notesRoute, (route) => false);
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'invalid-credential') {
-                  print('Email or password are incorrect!');
+                  devtools.log('Email or password are incorrect!');
                 }
               }
             },
@@ -67,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
           TextButton(
             onPressed: () {
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/register/', (route) => false);
+                  .pushNamedAndRemoveUntil(registerRoute, (route) => false);
             },
             child: const Text('Not registered yet? Register here!'),
           )
